@@ -1,22 +1,24 @@
 import React from "react";
-import useSWR from "swr";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-function Cards({ idDog }) {
-  const { data, error } = useSWR(
-    "https://api.thedogapi.com/v1/breeds",
-    fetcher
-  );
-
-  if (error) return "Ha ocurrido un errorcillo.";
-  if (!data) return "... estamos cargando, paciencia gente.";
-  console.log(data);
-  console.log(idDog);
-
+function Cards({ nameDog, urlDog, temperamentDog, life_spanDog }) {
   return (
-    <div>
-      <h1>Soy Componente Cards</h1>
+    <div style={{ background: "gray", margin: "30px" }}>
+      <h1>Tarejeta Perruna</h1>
+      <div>
+        <h5>Nombre: </h5>
+        <p>{nameDog}</p>
+      </div>
+      <div>
+        <h5>Temperamento: </h5>
+        <p>{temperamentDog}</p>
+      </div>
+      <div>
+        <h5>Esperanza de Vida: </h5>
+        <p>{life_spanDog}</p>
+      </div>
+      <br></br>
+      <img src={urlDog} alt="perrito" height="100" width="100" />
+      <br></br>
     </div>
   );
 }
